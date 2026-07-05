@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpsFlow AI – Internal Operations Assistant</title>
+    <!-- Use Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css?v=6">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-bolt"></i> OpsFlow AI
+        </div>
+        <div class="user-profile">
+            <i class="fa-solid fa-user-circle"></i>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="input-section">
+            <h1>Automate Your Meeting Workflows</h1>
+            <p>Paste your meeting notes below and let AI handle the documentation.</p>
+            
+            <div class="textarea-container">
+                <textarea id="meeting-notes" placeholder="Paste your meeting notes here... (e.g. 'Team sync on Q3 roadmap. Alice will prepare the slides by Friday...')" rows="10"></textarea>
+                <div class="char-counter"><span id="char-count">0</span> characters</div>
+            </div>
+            
+            <button id="process-btn" class="primary-btn">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Process Meeting Notes
+            </button>
+            
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing meeting notes and generating structured outputs...</p>
+            </div>
+            
+            <div id="error-message" class="hidden error"></div>
+        </div>
+
+        <div id="results-section" class="hidden">
+            <div class="results-header">
+                <h2><i class="fa-solid fa-chart-pie"></i> Analysis Results</h2>
+                <div class="action-buttons">
+                    <button id="download-pdf-btn" class="secondary-btn"><i class="fa-solid fa-file-pdf"></i> Download PDF</button>
+                    <button id="send-webhook-btn" class="secondary-btn" disabled>📤 Send to n8n</button>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Priority Card -->
+                <div class="card priority-card">
+                    <h3><i class="fa-solid fa-flag"></i> Priority</h3>
+                    <div id="priority-content" class="priority-badge"></div>
+                </div>
+
+                <!-- Summary Card -->
+                <div class="card summary-card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-list"></i> Meeting Summary</h3>
+                        <button class="icon-btn copy-btn" data-target="summary-content" title="Copy"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                    <p id="summary-content"></p>
+                </div>
+
+                <!-- Discussion Points -->
+                <div class="card discussion-card">
+                    <h3><i class="fa-solid fa-comments"></i> Discussion Points</h3>
+                    <ul id="discussion-content"></ul>
+                </div>
+
+                <!-- Action Items -->
+                <div class="card action-card full-width">
+                    <h3><i class="fa-solid fa-tasks"></i> Action Items</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Assignee</th>
+                                    <th>Task</th>
+                                    <th>Deadline</th>
+                                </tr>
+                            </thead>
+                            <tbody id="action-content">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Risks -->
+                <div class="card risks-card">
+                    <h3><i class="fa-solid fa-triangle-exclamation"></i> Risks Identified</h3>
+                    <ul id="risks-content"></ul>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="card next-steps-card">
+                    <h3><i class="fa-solid fa-forward-step"></i> Next Steps</h3>
+                    <ul id="next-steps-content"></ul>
+                </div>
+
+                <!-- Follow Up Email -->
+                <div class="card email-card full-width">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-envelope"></i> Draft Follow-up Email</h3>
+                        <button class="icon-btn copy-btn" data-target="email-content" title="Copy"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+                    <pre id="email-content" class="email-preview"></pre>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="/static/script.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "OpsFlow AI - Meeting Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "meeting",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "76ec295b-302a-43d9-9ec6-89689f2a0bb5",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "9b1c7c94-06cd-4d89-8d76-805128ff4656"
+    }
+  ],
+  "pinData": {},
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "f7d7c86a-722f-4a37-b673-0498b8b548b2"
+}
